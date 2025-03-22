@@ -5,9 +5,13 @@ document.querySelectorAll('.nav-links a, .footer-links a').forEach(anchor => {
         const targetId = this.getAttribute('href').substring(1);
         const targetElement = document.getElementById(targetId);
         window.scrollTo({
-            top: targetElement ? targetElement.offsetTop - 60 : 0, // Adjusted offset for mobile
+            top: targetElement ? targetElement.offsetTop - 60 : 0,
             behavior: 'smooth'
         });
+        // Close menu on mobile after clicking a link
+        if (window.innerWidth <= 768) {
+            navLinks.classList.remove('active');
+        }
     });
 });
 
@@ -41,7 +45,7 @@ darkModeToggle.addEventListener('click', () => {
     }
 });
 
-// Duplicate Project and Research Cards
+// Duplicate Project and Research Cards (for desktop only)
 const projectCards = document.getElementById('project-cards');
 const projectContent = projectCards.innerHTML;
 projectCards.innerHTML += projectContent;
@@ -49,3 +53,11 @@ projectCards.innerHTML += projectContent;
 const researchCards = document.getElementById('research-cards');
 const researchContent = researchCards.innerHTML;
 researchCards.innerHTML += researchContent;
+
+// Hamburger Menu Toggle
+const menuToggle = document.querySelector('.menu-toggle');
+const navLinks = document.querySelector('.nav-links');
+
+menuToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+});

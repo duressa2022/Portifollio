@@ -79,6 +79,19 @@ body[data-theme="light"] .nav-links li a {
     transform: scale(1.1);
 }
 
+.menu-toggle {
+    display: none; /* Hidden by default on desktop */
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: #e0e0e0;
+    cursor: pointer;
+}
+
+body[data-theme="light"] .menu-toggle {
+    color: #2c3e50;
+}
+
 /* Section Styles */
 .section {
     padding: 60px 20px;
@@ -132,7 +145,7 @@ body[data-theme="light"] .section p {
 
 /* Project Slider */
 .project-slider {
-    overflow-x: hidden; /* Hide horizontal overflow */
+    overflow-x: hidden;
     width: 100%;
     position: relative;
     padding: 20px 0;
@@ -156,7 +169,7 @@ body[data-theme="light"] .section p {
 
 /* Research Slider */
 .research-slider {
-    overflow-x: hidden; /* Hide horizontal overflow */
+    overflow-x: hidden;
     width: 100%;
     position: relative;
     padding: 20px 0;
@@ -303,17 +316,35 @@ body[data-theme="light"] footer {
 
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
-    .navbar {
-        flex-direction: column;
-        padding: 15px 20px;
+    /* Hamburger Menu */
+    .menu-toggle {
+        display: block;
     }
 
     .nav-links {
+        display: none; /* Hidden by default on mobile */
         flex-direction: column;
-        gap: 15px;
-        margin-top: 15px;
+        gap: 20px;
         width: 100%;
-        text-align: center;
+        padding: 20px;
+        background: rgba(44, 62, 80, 0.95);
+        position: absolute;
+        top: 100%;
+        left: 0;
+        z-index: 999;
+    }
+
+    body[data-theme="light"] .nav-links {
+        background: rgba(255, 255, 255, 0.95);
+    }
+
+    .nav-links.active {
+        display: flex; /* Show when toggled */
+    }
+
+    .navbar {
+        padding: 15px 20px;
+        flex-wrap: wrap;
     }
 
     .section h1 {
@@ -334,27 +365,24 @@ body[data-theme="light"] footer {
         margin: 0 auto;
     }
 
+    /* Remove Slider Behavior on Mobile */
     .project-slider,
     .research-slider {
-        overflow-x: auto; /* Enable scrolling on mobile */
-        -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
-        scrollbar-width: none; /* Firefox */
-        -ms-overflow-style: none; /* IE/Edge */
-    }
-
-    .project-slider::-webkit-scrollbar,
-    .research-slider::-webkit-scrollbar {
-        display: none; /* Chrome, Safari, Opera */
+        overflow-x: hidden;
+        padding: 10px 0;
     }
 
     .project-slider .content-cards,
     .research-slider .content-cards {
-        animation: none; /* Disable animation on mobile */
+        flex-wrap: wrap; /* Stack cards vertically */
+        animation: none; /* No animation */
     }
 
-    .project-slider,
-    .research-slider {
-        padding: 10px 0;
+    .project-slider::before,
+    .project-slider::after,
+    .research-slider::before,
+    .research-slider::after {
+        display: none; /* Remove gradients on mobile */
     }
 
     .footer-content {
