@@ -45,14 +45,36 @@ darkModeToggle.addEventListener('click', () => {
     }
 });
 
-// Duplicate Project and Research Cards (for desktop only)
+// Duplicate Project and Research Cards (Desktop Only)
 const projectCards = document.getElementById('project-cards');
-const projectContent = projectCards.innerHTML;
-projectCards.innerHTML += projectContent;
-
 const researchCards = document.getElementById('research-cards');
-const researchContent = researchCards.innerHTML;
-researchCards.innerHTML += researchContent;
+
+function duplicateCards() {
+    if (window.innerWidth > 768) {
+        projectCards.innerHTML += projectCards.innerHTML;
+        researchCards.innerHTML += researchCards.innerHTML;
+    }
+}
+
+// Run on load
+duplicateCards();
+
+// Handle window resize
+window.addEventListener('resize', () => {
+    if (window.innerWidth <= 768) {
+        // Reset to original content on mobile
+        projectCards.innerHTML = projectCards.innerHTML.slice(0, projectCards.innerHTML.length / 2);
+        researchCards.innerHTML = researchCards.innerHTML.slice(0, researchCards.innerHTML.length / 2);
+    } else {
+        // Duplicate only if not already duplicated
+        if (projectCards.children.length === 5) { // Original number of project cards
+            projectCards.innerHTML += projectCards.innerHTML;
+        }
+        if (researchCards.children.length === 3) { // Original number of research cards
+            researchCards.innerHTML += researchCards.innerHTML;
+        }
+    }
+});
 
 // Hamburger Menu Toggle
 const menuToggle = document.querySelector('.menu-toggle');
