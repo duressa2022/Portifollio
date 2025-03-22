@@ -1,0 +1,308 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #1f2a44, #2c3e50); /* Dark mode default */
+    color: #e0e0e0; /* Light text for dark mode */
+    line-height: 1.6;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* Light Mode (when data-theme="light") */
+body[data-theme="light"] {
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+    color: #333;
+}
+
+/* Navbar Styles */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background: rgba(44, 62, 80, 0.9); /* Dark mode default */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+body[data-theme="light"] .navbar {
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #e0e0e0; /* Dark mode default */
+}
+
+body[data-theme="light"] .logo {
+    color: #2c3e50;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+    align-items: center;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: #e0e0e0; /* Dark mode default */
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+body[data-theme="light"] .nav-links li a {
+    color: #2c3e50;
+}
+
+.nav-links li a:hover {
+    color: #e74c3c;
+}
+
+/* Dark Mode Toggle Button */
+.dark-mode-toggle {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 5px;
+    transition: transform 0.3s ease;
+}
+
+.dark-mode-toggle:hover {
+    transform: scale(1.1);
+}
+
+/* Section Styles */
+.section {
+    padding: 60px 40px;
+    text-align: center;
+}
+
+.section h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #e0e0e0; /* Dark mode default */
+}
+
+body[data-theme="light"] .section h1 {
+    color: #2c3e50;
+}
+
+.section p {
+    font-size: 1.2rem;
+    color: #bdc3c7; /* Dark mode default */
+    margin-bottom: 20px;
+}
+
+body[data-theme="light"] .section p {
+    color: #7f8c8d;
+}
+
+/* Call to Action Button */
+.cta-button {
+    padding: 12px 30px;
+    background: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+    background: #c0392b;
+    transform: translateY(-2px);
+}
+
+/* Content Cards (General) */
+.content-cards {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* Project Slider */
+.project-slider {
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+    padding: 20px 0;
+}
+
+.project-slider .content-cards {
+    display: flex;
+    flex-wrap: nowrap;
+    animation: slide-left 25s linear infinite;
+    will-change: transform;
+}
+
+@keyframes slide-left {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.project-slider .content-cards:hover {
+    animation-play-state: paused;
+}
+
+/* Research Slider */
+.research-slider {
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+    padding: 20px 0;
+}
+
+.research-slider .content-cards {
+    display: flex;
+    flex-wrap: nowrap;
+    animation: slide-right 25s linear infinite;
+    will-change: transform;
+}
+
+@keyframes slide-right {
+    0% {
+        transform: translateX(-50%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.research-slider .content-cards:hover {
+    animation-play-state: paused;
+}
+
+/* Card Styles */
+.card {
+    background: rgba(44, 62, 80, 0.95); /* Dark mode default */
+    border-radius: 15px;
+    padding: 25px;
+    width: 350px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+    text-align: left;
+    flex-shrink: 0;
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Dark mode default */
+}
+
+body[data-theme="light"] .card {
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 12px;
+    color: #e0e0e0; /* Dark mode default */
+    font-weight: 600;
+}
+
+body[data-theme="light"] .card h3 {
+    color: #2c3e50;
+}
+
+.card p {
+    font-size: 1rem;
+    color: #bdc3c7; /* Dark mode default */
+    margin-bottom: 10px;
+}
+
+body[data-theme="light"] .card p {
+    color: #7f8c8d;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Slider Enhancements */
+.project-slider::before,
+.project-slider::after,
+.research-slider::before,
+.research-slider::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 100px;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.project-slider::before,
+.research-slider::before {
+    left: 0;
+    background: linear-gradient(to right, rgba(31, 42, 68, 1), rgba(31, 42, 68, 0)); /* Dark mode default */
+}
+
+.project-slider::after,
+.research-slider::after {
+    right: 0;
+    background: linear-gradient(to left, rgba(31, 42, 68, 1), rgba(31, 42, 68, 0)); /* Dark mode default */
+}
+
+body[data-theme="light"] .project-slider::before,
+body[data-theme="light"] .research-slider::before {
+    background: linear-gradient(to right, rgba(245, 247, 250, 1), rgba(245, 247, 250, 0));
+}
+
+body[data-theme="light"] .project-slider::after,
+body[data-theme="light"] .research-slider::after {
+    background: linear-gradient(to left, rgba(245, 247, 250, 1), rgba(245, 247, 250, 0));
+}
+
+/* Footer Styles */
+footer {
+    background: #1f2a44; /* Dark mode default */
+    color: white;
+    padding: 20px 40px;
+}
+
+body[data-theme="light"] footer {
+    background: #2c3e50;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-logo {
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+
+.footer-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.footer-links li a {
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.footer-links li a:hover {
+    color: #e74c3c;
+}
